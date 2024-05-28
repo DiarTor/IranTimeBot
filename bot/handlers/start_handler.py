@@ -11,7 +11,7 @@ class StartCommandHandler:
 
     def _generate_keyboard(self):
         markup = ReplyKeyboardMarkup(resize_keyboard=True)
-        button = KeyboardButton("📅امروز چندمه؟")
+        button = KeyboardButton("📅 امروز چندمه؟")
         return markup.add(button)
 
     def welcome_message(self, msg: Message, bot: TeleBot):

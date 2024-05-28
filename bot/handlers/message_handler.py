@@ -7,5 +7,5 @@ from bot.job.datetime import DateAndTime
 class MessageHandler:
 
     def handle_message(self, msg: Message, bot: TeleBot):
-        if msg.text == "📅امروز چندمه؟":
+        if msg.text == "📅 امروز چندمه؟":
             DateAndTime().proccess(msg, bot)

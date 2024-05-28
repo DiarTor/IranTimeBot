@@ -5,4 +5,4 @@
 .idea
 /.idea/
 /.venv/
-config
+config.py

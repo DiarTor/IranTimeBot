@@ -1,13 +1,24 @@
-from telebot import TeleBot
+import telebot
+from jdatetime import datetime
+from telebot import types
 
-from bot.handlers.message_handler import MessageHandler
-from bot.handlers.start_handler import StartCommandHandler
-from config.bot_token import main_token
+import config
 
-bot = TeleBot(main_token)
+bot = telebot.TeleBot(config.BOT_TOKEN)
 
-bot.register_message_handler(StartCommandHandler().welcome_message, commands=['start'], pass_bot=True)
-bot.register_message_handler(MessageHandler().handle_message, content_types=['text'], pass_bot=True)
 
-if __name__ == "__main__":
-    bot.infinity_polling()
+@bot.message_handler(commands=['start'])
+def send_welcome(message):
+    markup = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
+    itembtn = types.KeyboardButton('📅 امروز چندمه؟')
+    markup.add(itembtn)
+    bot.send_message(message.chat.id, "خوش آمدید! برای دریافت تاریخ امروز دکمه را فشار دهید.", reply_markup=markup)
+
+
+@bot.message_handler(func=lambda message: message.text == "📅 امروز چندمه؟")
+def send_date(message):
+    today_date = datetime.now().strftime("%Y/%m/%d")
+    bot.send_message(message.chat.id, f"امروز مورخ {today_date} میباشد.")
+
+
+bot.infinity_polling()

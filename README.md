@@ -54,7 +54,7 @@ python main.py
 
 ## Code Overview
 
-### `bot.py`
+### `main.py`
 
 This is the main script that runs the bot. It sets up the bot, defines the command handlers, and starts polling for updates.
 
